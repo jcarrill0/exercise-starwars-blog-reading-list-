@@ -1,42 +1,44 @@
+import FavoriteList from "../component/FavoriteList";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			peopleList: [],
+			planetsList: [],
+			favoriteList: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getPeople: async () => {
+				await fetch("https://swapi.dev/api/people")
+					.then(res => res.json())
+					.then(people => setStore({ ...getStore(), peopleList: people.results }));
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			getPlanets: async () => {
+				await fetch("https://swapi.dev/api/planets")
+					.then(res => res.json())
+					.then(planets => setStore({ ...getStore(), planetsList: planets.results }));
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			addFavorite: data => {
+				const listStore = getStore().favoriteList;
+				const found = listStore.findIndex(element => element.name === data.name);
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				if (found === -1) {
+					setStore({ ...getStore(), favoriteList: [...listStore, data] });
+				}
+			},
+			deleteFavorite: myObj => {
+				const listStore = getStore().favoriteList;
+				const listUpdate = listStore.filter(element => element.name !== myObj.name);
 
-				//reset the global store
-				setStore({ demo: demo });
+				setStore({ ...getStore(), favoriteList: listUpdate });
+			},
+			getFavorite: name => {
+				const listStore = getStore().favoriteList;
+				const found = listStore.findIndex(element => element.name === myObj.name);
+				if (found === -1) {
+					return false;
+				}
+				return true;
 			}
 		}
 	};
