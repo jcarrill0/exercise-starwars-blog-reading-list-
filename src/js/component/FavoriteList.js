@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
@@ -23,7 +24,11 @@ const FavoriteList = () => {
 				<ul className="dropdown-menu" aria-labelledby="buttonFavorite">
 					{store.favoriteList.map((item, idx) => (
 						<li key={idx} className="dropdown-item d-flex justify-content-between">
-							{item.name}
+							<Link
+								to={`/detail/${item.url.substring(21, item.url.length)}`}
+								className="text-decoration-none text-dark">
+								{item.name}
+							</Link>
 							<span className="badge bg-danger" onClick={() => actions.deleteFavorite(item)}>
 								X
 							</span>
