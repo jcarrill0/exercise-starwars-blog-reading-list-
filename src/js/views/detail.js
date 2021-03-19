@@ -8,8 +8,8 @@ const Detail = () => {
 	const { category, id } = useParams();
 
 	return (
-		<div className="container">
-			<div className="row">
+		<div className="container mt-5">
+			<div className="row mb-5">
 				<div className="col-md-6">
 					<img className="img-fluid" src="http://placehold.it/800x600" alt="img" />
 				</div>

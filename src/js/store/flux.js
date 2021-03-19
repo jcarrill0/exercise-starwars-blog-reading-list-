@@ -10,13 +10,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			getPeople: async () => {
 				await fetch("https://swapi.dev/api/people")
-					.then(res => res.json())
-					.then(people => setStore({ ...getStore(), peopleList: people.results }));
+					.then(res => {
+						return res.ok ? res.json() : Promise.reject(res);
+					})
+					.then(people => setStore({ ...getStore(), peopleList: people.results }))
+					.catch(err => console.log("Ocurrio un error"));
 			},
 			getPlanets: async () => {
 				await fetch("https://swapi.dev/api/planets")
-					.then(res => res.json())
-					.then(planets => setStore({ ...getStore(), planetsList: planets.results }));
+					.then(res => {
+						return res.ok ? res.json() : Promise.reject(res);
+					})
+					.then(planets => setStore({ ...getStore(), planetsList: planets.results }))
+					.catch(err => console.log("Ocurrio un error"));
 			},
 			addFavorite: data => {
 				const listStore = getStore().favoriteList;
