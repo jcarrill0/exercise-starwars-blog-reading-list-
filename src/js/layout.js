@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/ScrollToTop";
+import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
 import injectContext from "./store/appContext"; // funcion para envolver con el context todo nuestro layout
-import { Navbar } from "./component/Navbar";
-import { Footer } from "./component/Footer";
+import { Navbar } from "./component/navbar";
+import { Footer } from "./component/footer";
 import Detail from "./views/detail";
 
 //create your first component
