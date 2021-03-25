@@ -1,7 +1,7 @@
 import React from "react";
 import logoImage from "../../img/logo-starwars.png";
 import { Link } from "react-router-dom";
-import FavoriteList from "./FavoriteList";
+import FavoriteList from "./favoriteList";
 
 export const Navbar = () => {
 	return (
