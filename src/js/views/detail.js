@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import FeaturesDetail from "../component/FeaturesDetail";
+import FeaturesDetail from "../component/featuresDetail";
 import { Context } from "../store/appContext";
 
 const Detail = () => {

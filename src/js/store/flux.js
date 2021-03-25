@@ -1,4 +1,4 @@
-import FavoriteList from "../component/FavoriteList";
+import FavoriteList from "../component/favoriteList";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
